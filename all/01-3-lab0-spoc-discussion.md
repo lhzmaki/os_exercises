@@ -7,7 +7,7 @@
 能否读懂ucore中的AT&T格式的X86-32汇编语言？请列出你不理解的汇编语言。
 - [x]  
 
->  http://www.imada.sdu.dk/Courses/DM18/Litteratur/IntelnATT.htm
+>  基本能读懂
 
 虽然学过计算机原理和x86汇编（根据THU-CS的课程设置），但对ucore中涉及的哪些硬件设计或功能细节不够了解？
 - [x]  
@@ -112,21 +112,31 @@ SETGATE(intr, 0,1,2,3);
 
 > 小程序如下：
 
-> 
-#include <iostream>
-#include "list.h"
+> #include <iostream>
 
-int main()
-{
-    list_entry_t *root;
-    list_init(root);
-    list_entry_t *p1;
-    list_entry_t *p2;
-    list_add_after(root, p2);
-    list_add_before(p2, p1);
-    list_del(p1);
-    return 0;
-}
+> #include "list.h"
+
+> int main()
+
+> {
+    
+> list_entry_t *root;
+
+> list_init(root);
+
+> list_entry_t *p1;
+
+> list_entry_t *p2;
+    
+> list_add_after(root, p2);
+    
+> list_add_before(p2, p1);
+
+> list_del(p1);
+
+>  return 0;
+
+> }
 ---
 
 ## 开放思考题
