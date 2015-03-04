@@ -25,7 +25,7 @@
 如何把一个在gdb中或执行过程中出现的物理/线性地址与你写的代码源码位置对应起来？
 - [x]  
 
-> gdb中有对应的指令可以
+> gdb中有对应的指令可以实现该功能
 
 了解函数调用栈对lab实验有何帮助？
 - [x]  
@@ -112,9 +112,9 @@ SETGATE(intr, 0,1,2,3);
 
 > 小程序如下：
 
-> #include <iostream>
+> \#include <iostream>
 
-> #include "list.h"
+> \#include "list.h"
 
 > int main()
 
