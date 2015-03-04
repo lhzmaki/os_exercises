@@ -110,6 +110,23 @@ SETGATE(intr, 0,1,2,3);
 
 > list.h中定义了链表的一些操作（如链表的初始化，两个链表成员的连接，链表成员的删除，在链表中查找特定项的前后项等功能）
 
+> 小程序如下：
+
+> 
+#include <iostream>
+#include "list.h"
+
+int main()
+{
+    list_entry_t *root;
+    list_init(root);
+    list_entry_t *p1;
+    list_entry_t *p2;
+    list_add_after(root, p2);
+    list_add_before(p2, p1);
+    list_del(p1);
+    return 0;
+}
 ---
 
 ## 开放思考题
