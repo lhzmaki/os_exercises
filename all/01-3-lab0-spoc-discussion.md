@@ -48,7 +48,7 @@
 搭建好实验环境，请描述碰到的困难和解决的过程。
 - [x]  
 
-> 
+>  目前没有碰到问题
 
 熟悉基本的git命令，从github上（http://www.github.com/chyyuu/ucore_lab）下载ucore lab实验
 - [x]  
