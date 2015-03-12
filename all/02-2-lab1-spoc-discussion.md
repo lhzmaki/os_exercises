@@ -54,54 +54,44 @@ lab1中的cprintf函数最终通过哪些外设完成了对字符串的输出？
 
 lab1中printfmt函数用到了可变参，请参考写一个小的linux应用程序，完成实现定义和调用一个可变参数的函数。(spoc)
 - [x]  
+> 
+```
+#include<stdio.h>
+#include<string.h>
+#include<stdarg.h>
 
->\#include<stdio.h>
+int demo(char* msg, ...)
+{
+   va_list vl;
+   char* p;
+   va_start(vl, msg);
+   while(1){
+     p = va_arg(vl, char*);
+     printf("%s/n", p);
+     if (strcmp(p, "/0") == 0)
+      break;
+  }
+}
+int main()
+{
 
->\#include<string.h>
-
->\#include<stdarg.h>
-
->int demo(char* msg, ...)
-
->{
-
->   va_list vl;
-
->   char* p;
-
->   va_start(vl, msg);
-
->   while(1){
-
->     p = va_arg(vl, char*);
-
->     printf("%s/n", p);
-
->     if (strcmp(p, "/0") == 0)
-
->       break;
-
->   }
-
->}
-
->int main()
-
->{
-
->   demo("hello", "hi", "nice");
-
->   demo("hello", "fuck");
-
->   return 0;
-
->}
-
+   demo("hello", "hi", "nice");
+   demo("hello", "fuck");
+   return 0;
+}
+```
 
 如果让你来一个阶段一个阶段地从零开始完整实现lab1（不是现在的填空考方式），你的实现步骤是什么？（比如先实现一个可显示字符串的bootloader（描述一下要实现的关键步骤和需要注意的事项），再实现一个可加载ELF格式文件的bootloader（再描述一下进一步要实现的关键步骤和需要注意的事项）...） (spoc)
 - [x]  
 
-> 
+>   首先是一个可以输出 `hello world` 的 `bootloader`, 为了做到这一点, 首先要配置 GDT, 进入保护模式, 然后是
+学习 CGA 的使用方法.
+
+>   在能够拥有一个可以运行的bootloader以后, 接下来需要能够加载 kernel 到内存里, 因此需要学习 kernel 镜像的访问
+以及加载到内存的方法, 通过学习 ELF 的结构和调用方法可以做到这一点.
+
+>   接下来是在 kernel 中处理各种中断, 首先是配置在中断控制器, 然后是配置 IDT, 一起将各种外设配置成功,
+最后打开中断, 让所有中断能够成功调用对应的中断处理程序.
 
 
 如何能获取一个系统调用的调用次数信息？如何可以获取所有系统调用的调用次数信息？请简要说明可能的思路。(spoc)
