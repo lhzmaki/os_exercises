@@ -69,12 +69,9 @@ ID buddy_alloc(int lg)
 {
 	if (lg == 0)
 		return;
-
 	int size = power_of_2(lg);
-
 	if (tree[0].size < size)
 		return;
-
 	int i = 0;
 	while(1){
 		if (i >= 1023)
@@ -86,23 +83,19 @@ ID buddy_alloc(int lg)
 		else
 			break;
 	}
-
 	int offset = (tree[i].node+1)*tree[i].size - c_size;
 	ID id;
 	id.size = size;
 	id.offset = offset;
-
 	int dsize = tree[i].size;
 	tree[i].size = 0;
 	tree[i].done = false;
-
 	for (int j = i/2; j >= 0; j = j/2){
 		tree[j].size -= dsize;
 		dsize *= 2;
 		if (tree[j].size == 0)
 			tree[j].done = false;
 	}
-
 	return id;
 }	
 void buddy_free(ID id)
@@ -117,7 +110,6 @@ void buddy_free(ID id)
 			brother = index - 1;
 		else
 			brother = index + 1;
-
 		if (tree[brother].done == true){
 			tree[index/2].size = tree[index].size * 2;
 			tree[index/2].done = true;
