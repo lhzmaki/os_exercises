@@ -28,11 +28,11 @@ NOTICE
 
 请参考ucore lab2代码，采用`struct pmm_manager` 根据你的`学号 mod 4`的结果值，选择四种（0:最优匹配，1:最差匹配，2:最先匹配，3:buddy systemm）分配算法中的一种或多种，在应用程序层面(可以 用python,ruby,C++，C，LISP等高语言)来实现，给出你的设思路，并给出测试用例。 (spoc)
 >参考网上的buddy systemm，实现了一个简化版的
+>
 ```
 #include <iostream>
 using namespace std;
 const int c_size = 1024;
-
 struct buddy
 {
 	int node;
@@ -40,7 +40,6 @@ struct buddy
 	bool done;	
 };
 buddy* tree;
-
 int power_of_2(int size)
 {
 	int i = 1;
@@ -49,7 +48,6 @@ int power_of_2(int size)
 	}
 	return i;
 }
-
 void init()
 {
 	tree = new int [2*c_size - 1];
@@ -63,13 +61,11 @@ void init()
 		tree[i].done = true;
 	}
 }
-
 struct ID
 {
 	int size;
 	int offset;
-}
-
+};
 ID buddy_alloc(int lg)
 {
 	if (lg == 0)
@@ -110,7 +106,6 @@ ID buddy_alloc(int lg)
 
 	return id;
 }	
-
 void buddy_free(ID id)
 {
 	int index = (id.offset + c_size) / id.size - 1;
@@ -133,7 +128,6 @@ void buddy_free(ID id)
 			break;
 	}
 }
-
 int main()
 {
 	init();
