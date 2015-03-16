@@ -31,7 +31,6 @@ NOTICE
 ```
 #include <iostream>
 using namespace std;
-
 const int c_size = 1024;
 
 struct buddy
