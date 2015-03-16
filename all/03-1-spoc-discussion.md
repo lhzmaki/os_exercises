@@ -52,7 +52,6 @@ void init()
 {
 	tree = new int [2*c_size - 1];
 	int s = c_size;
-
 	for (int i = 0; i < 2*c_size; i++){
 		tree[i].node = i;
 		if (s % (i+1) == 0)
