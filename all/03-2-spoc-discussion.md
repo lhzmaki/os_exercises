@@ -80,7 +80,28 @@ Virtual Address 7268:
     --> pte index:0x13  pte contents:(valid 1, pfn 0x65)
       --> Translates to Physical Address 0xca8 --> Value: 16
 ```
+>
+```
+Virtual Address 6c74:
+  --> pde index:0x1b  pde contents:(valid 1, pfn 0x20)
+  	--> pte index:0x03  pte contens:(valid 1, pfn 0x61)
+  	  --> Transflates to Physical Address 0xc34 --> Value 06
 
+Virtual Address 6b22:
+  --> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
+  	--> pte index:0x19  pte contents:(valid 1, pfn 0x47)
+  	  --> Transflates to Physical Address 0x5e2 --> Value 1a
+
+Virtual Address 03df:
+  --> pde index:0x0  pde contents:(valid 1, pfn 0x5a)
+  	--> pte index:0x1e  pte contents:(valid 1, pfn 0x5)
+  	  --> Transflates to Physical Address 0x161 --> Value 0f
+
+Virtual Address 69dc:
+  --> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
+  	--> pte index:0xe  pte contents:(valid 0, pfn 0x7f)
+  	  --> Fault (page table entry not valid)
+```
 
 
 （3）请基于你对原理课二级页表的理解，并参考Lab2建页表的过程，设计一个应用程序（可基于python, ruby, C, C++，LISP等）可模拟实现(2)题中描述的抽象OS，可正确完成二级页表转换。
