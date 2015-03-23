@@ -109,8 +109,30 @@ va 0xcd82c07c, pa 0x0c20907c, pde_idx 0x00000336, pde_ctx  0x00037003, pte_idx 0
 ```
 
 - [x]  
+```
+#include <iostream>
 
-> 
+unsigned int va,pa;
+
+using namespace std;
+
+int main() {
+    //va = 0xc2265b1f, pa = 0x0d8f1b1f;
+    //va = 0xcc386bbc, pa = 0x0414cbbc;
+    //va = 0xc7ed4d57, pa = 0x07311d57;
+    va = 0xce6c3f32, pa = 0x007d4f32;
+    unsigned int n1 = va >> 22;
+    unsigned int n2 = (va >> 12) % 1024;
+    cout << "va 0x" << hex << va << ", pa 0x" << pa;
+    cout << ", pde_idx 0x" << hex << n1;
+    n1 = n1-768+1;
+    unsigned int pde_ctx = (n1 << 12) + 3;
+    cout << ", pde_ctx 0x" << hex << pde_ctx;
+    cout << ", pte_idx 0x" << hex << n2;
+    unsigned int pte_ctx = ((pa >> 12) << 12) | 0x3;
+    cout << ", pte_ctx 0x" << hex << pte_ctx;
+}
+```
 
 ---
 
