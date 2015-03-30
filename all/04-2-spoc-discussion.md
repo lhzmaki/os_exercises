@@ -66,7 +66,82 @@ LRU：将之前出现的页的最近出现位置进行排序，将最小的那�
 ```
 
 (2)（spoc）根据你的`学号 mod 4`的结果值，确定选择四种替换算法（0：LRU置换算法，1:改进的clock 页置换算法，2：工作集页置换算法，3：缺页率置换算法）中的一种来设计一个应用程序（可基于python, ruby, C, C++，LISP等）模拟实现，并给出测试。请参考附件代码或独自实现。
+```
+#include <iostream>
+using namespace std;
 
+const int SIZE = 5;
+int PT = 0;
+
+struct PAGE
+{
+	bool visit;
+	bool write;
+	int num;
+	/* data */
+};
+
+
+int main()
+{
+	PAGE memory[SIZE];
+	
+	for (int i = 0; i < SIZE; i++){
+		memory[i].visit = false;
+		memory[i].write = false;
+		memory[i].num = 0;
+	}
+
+	int vm[10];
+	bool wm[10];
+	for (int i = 0; i < 10; i++){
+		cin >> vm[i] >> wm[i];
+		bool ans = false;
+		for (int j = 0; j < SIZE; j++){
+			if (memory[j].num == vm[i]){
+				ans = true;
+				memory[j].write = (wm[i] || memory[j].write);
+				break;
+			}
+		}
+		
+		while(!ans){
+			cout << "hello" << endl;
+			if (memory[PT].visit == false && memory[PT].write == false)
+			{
+				memory[PT].visit = true;
+				memory[PT].write = wm[i];
+				memory[PT].num = vm[i];
+				ans = true;
+			}
+			else if (memory[PT].visit == false && memory[PT].write == true){
+				memory[PT].write = false;
+				PT++;
+				if (PT == SIZE)
+					PT = 0;
+			}
+			else if (memory[PT].visit == true && memory[PT].write == false){
+				memory[PT].visit = false;
+				PT++;
+				if (PT == SIZE)
+					PT = 0;
+			}
+			else if (memory[PT].visit == true && memory[PT].write == true){
+				memory[PT].visit = false;
+				PT++;
+				if (PT == SIZE)
+					PT = 0;
+			}
+		}
+
+		for (int j = 0; j < SIZE; j++)
+			cout << memory[j].visit << memory[j].write << memory[j].num << endl;
+	}
+
+	return 0;
+}
+
+```
 ## 扩展思考题
 （1）了解LIRS页置换算法的设计思路，尝试用高级语言实现其基本思路。此算法是江松博士（导师：张晓东博士）设计完成的，非常不错！
 
