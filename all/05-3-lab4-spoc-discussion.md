@@ -33,6 +33,8 @@ tf和context中的esp
 (7)fork()父子进程的返回值是不同的。这在源代码中的体现中哪？
 
 (8)内核线程initproc的第一次执行流程是什么样的？能跟踪出来吗？
+> 
+
 
 ## 小组练习与思考题
 
@@ -50,14 +52,18 @@ tf和context中的esp
 
 请完成如下练习，完成代码填写，并形成spoc练习报告
 
-### 1. 分析并描述创建分配进程的过程
+### 练习1. 分析并描述创建分配进程的过程
 
 > 注意 state、pid、cr3，context，trapframe的含义
+
+> 调用kernel_thread函数，设置trapframe中的一些参数，如cs，ds，然后调用do_fork函数，设置pid，调用copy_thread设置context和trapframe的一些参数，并调用wakeup_proc函数将state设置成runnable
+
 
 ### 练习2：分析并描述新创建的内核线程是如何分配资源的
 
 > 注意 理解对kstack, trapframe, context等的初始化
 
+> 在setup_kstack函数中分配KSTACKPAGE大小的内存，并将proc_kstack设为该栈起始的虚地址
 
 当前进程中唯一，操作系统的整个生命周期不唯一，在get_pid中会循环使用pid，耗尽会等待
 
