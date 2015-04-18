@@ -70,6 +70,68 @@ tf和context中的esp
 ### 练习3：阅读代码，在现有基础上再增加一个内核线程，并通过增加cprintf函数到ucore代码中
 能够把进程的生命周期和调度动态执行过程完整地展现出来
 
+```
+结果如下：
+use SLOB allocator
+kmalloc_init() succeeded!
+ alloc_proc: proc pid 1 will init
+ wakeup_proc: proc pid 1 will be waken up
+ alloc_proc: proc pid 2 will init
+ wakeup_proc: proc pid 2 will be waken up
+ alloc_proc: proc pid 3 will init
+ wakeup_proc: proc pid 3 will be waken up
+proc_init:: Created kernel thread init_main--> pid: 1, name: init1
+proc_init:: Created kernel thread init_main--> pid: 2, name: init2
+proc_init:: Created kernel thread init_main--> pid: 3, name: init3
+++ setup timer interrupts
+ schedule: proc pid 0 will be ready
+ schedule: proc pid 1 will be running
+ kernel_thread, pid = 1, name = init1
+ schedule: proc pid 1 will be ready
+ schedule: proc pid 2 will be running
+ kernel_thread, pid = 2, name = init2
+ schedule: proc pid 2 will be ready
+ schedule: proc pid 3 will be running
+ kernel_thread, pid = 3, name = init3
+ schedule: proc pid 3 will be ready
+ schedule: proc pid 1 will be running
+ kernel_thread, pid = 1, name = init1 , arg  init main1: Hello world!! 
+ schedule: proc pid 1 will be ready
+ schedule: proc pid 2 will be running
+ kernel_thread, pid = 2, name = init2 , arg  init main2: Hello world!! 
+ schedule: proc pid 2 will be ready
+ schedule: proc pid 3 will be running
+ kernel_thread, pid = 3, name = init3 , arg  init main3: Hello world!! 
+ schedule: proc pid 3 will be ready
+ schedule: proc pid 1 will be running
+ kernel_thread, pid = 1, name = init1 ,  en.., Bye, Bye. :)
+ do_exit: proc pid 1 will exit
+ do_exit: proc  parent c02ff008
+ do_exit: proc pid 1 will from PROC_RUNNABLE TO PROC_ZOMBIE
+ schedule: proc pid 1 will be ready
+ schedule: proc pid 2 will be running
+ kernel_thread, pid = 2, name = init2 ,  en.., Bye, Bye. :)
+ do_exit: proc pid 2 will exit
+ do_exit: proc  parent c02ff008
+ do_exit: proc pid 2 will from PROC_RUNNABLE TO PROC_ZOMBIE
+ schedule: proc pid 2 will be ready
+ schedule: proc pid 3 will be running
+ kernel_thread, pid = 3, name = init3 ,  en.., Bye, Bye. :)
+ do_exit: proc pid 3 will exit
+ do_exit: proc  parent c02ff008
+ do_exit: proc pid 3 will from PROC_RUNNABLE TO PROC_ZOMBIE
+ schedule: proc pid 3 will be ready
+ schedule: proc pid 0 will be running
+do_wait: begin
+do_wait: has kid find child  pid1
+do_wait: begin
+do_wait: has kid find child  pid2
+do_wait: begin
+do_wait: has kid find child  pid3
+do_wait: begin
+
+```
+
 ### 练习4 （非必须，有空就做）：增加可以睡眠的内核线程，睡眠的条件和唤醒的条件可自行设计，并给出测试用例，并在spoc练习报告中给出设计实现说明
 
 ### 扩展练习1: 进一步裁剪本练习中的代码，比如去掉页表的管理，只保留段机制，中断，内核线程切换，print功能。看看代码规模会小到什么程度。
