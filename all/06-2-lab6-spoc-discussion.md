@@ -33,4 +33,67 @@
 
 ### 练习用的[lab6 spoc exercise project source code](https://github.com/chyyuu/ucore_lab/tree/master/labcodes_answer/lab6_result)
 
+```
+输出结果如下：
+the process 1 delete from the queue
+the process 1 will run
+the process 2 will wake up
+the process 2 add to the queue
+the process 1 will sleep
+the process 2 delete from the queue
+the process 2 will run
+kernel_execve: pid = 2, name = "priority".
+the process 3 will wake up
+the process 3 add to the queue
+the process 4 will wake up
+the process 4 add to the queue
+the process 5 will wake up
+the process 5 add to the queue
+the process 6 will wake up
+the process 6 add to the queue
+the process 7 will wake up
+the process 7 add to the queue
+main: fork ok,now need to wait pids.
+the process 2 will sleep
+the process 7 delete from the queue
+the process 7 will run
+child pid 7, acc 968000, time 1003
+the process 7 will be Zombie
+the process 2 will wake up
+the process 2 add to the queue
+the process 6 delete from the queue
+the process 6 will run
+child pid 6, acc 4000, time 1008
+the process 6 will be Zombie
+the process 5 delete from the queue
+the process 5 will run
+child pid 5, acc 4000, time 1012
+the process 5 will be Zombie
+the process 4 delete from the queue
+the process 4 will run
+child pid 4, acc 4000, time 1018
+the process 4 will be Zombie
+the process 3 delete from the queue
+the process 3 will run
+child pid 3, acc 4000, time 1023
+the process 3 will be Zombie
+the process 2 delete from the queue
+the process 2 will run
+main: pid 3, acc 4000, time 1024
+main: pid 4, acc 4000, time 1025
+main: pid 5, acc 4000, time 1025
+main: pid 6, acc 4000, time 1026
+main: pid 7, acc 968000, time 1026
+main: wait pids over
+stride sched correct result: 1 1 1 1 242
+the process 2 will be Zombie
+the process 1 will wake up
+the process 1 add to the queue
+the process 1 delete from the queue
+the process 1 will run
+the process 1 add to the queue
+the process 1 delete from the queue
+all user-mode processes have quit.
+```
+
 
