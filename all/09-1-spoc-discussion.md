@@ -61,7 +61,7 @@
 10在根目录下创建新文件n
 ```
 
-> 第2问代码位置sfs-homework
+> 第2问代码位置[sfs-homework](http://south.cs.tsinghua.edu.cn/BrieflyX/ucore_lab/blob/master/related_info/lab8/sfs-homework.py)
 
  1. (spoc)FAT、UFS、YAFFS、NTFS这几种文件系统中选一种，分析它的文件卷结构、目录结构、文件分配方式，以及它的变种。
   wikipedia上的文件系统列表参考
